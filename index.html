@@ -1,55 +1,52 @@
 <!DOCTYPE html>
+
 <html>
+  <head>
+    <title>the fuq</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="styles.css">
 
-<head>
-  <!-- AR.js by @jerome_etienne - github: https://github.com/jeromeetienne/ar.js - info: https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf -->
-  <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
-<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
-  <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.8.4/dist/aframe-extras.min.js"></script>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="gesture-detector.js"></script>
+    <script src="gesture-handler.js"></script>
 
-  <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
-  <script>
-AFRAME.registerComponent('vidhandler', {
-  // ...
-  init: function () {
-    // Set up initial state and variables.
-    this.toggle = false;
-    this.vid = document.querySelector("#vid")
-    this.vid.pause();
-  },
-  tick:function(){
     
-if(this.el.object3D.visible == true){
-  if(!this.toggle){
-     this.toggle = true;
-     this.vid.play();
-    }
-  }else{
-  this.toggle = false;
-    this.vid.pause();
-    }
-  }
-});
-  </script>
-
-</head>
-
-
-<body style='margin : 0px; overflow: hidden;'>
-  <div style='position: fixed; top: 10px; width:inherit; text-align: center; z-index: 1;'>
-    <a href="https://github.com/jeromeetienne/AR.js/" target="_blank">AR.js</a> - Check out the repository !
-  </div>
-  <a-scene embedded artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180' >
-    <a-assets>
-      <video id="vid" src="https://venice-and-death.github.io/section videos/Video7.mp4" loop="true" crossorigin>
-    </a-assets>
+  </head>
+  <div style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
+    <button onclick="window.location = 'https://venice-and-death.github.io/1301'">1301</button>
+    <button onclick="window.location = 'https://venice-and-death.github.io/8000'">Dante</button>
+    <button onclick="window.location = 'https://venice-and-death.github.io/8201'">Collage</button>
+</div>
+    
+  <body>
    
-    <a-marker id="memarker" preset="hiro" vidhandler>
-      <a-plane position='2 2 -2' scale="2 2 2" width="2" rotation="0 0 0" material='transparent:true;opacity: 0.7;src:#vid'></a-plane>
-    </a-marker>
-
-  </a-scene>
-</body>
-
-
+    <a-scene
+      arjs
+      embedded
+      renderer="logarithmicDepthBuffer: true;"
+      vr-mode-ui="enabled: false"
+      gesture-detector
+      id="scene"
+    >
+      <a-marker type="pattern" url="https://venice-and-death.github.io/imagemarkers/3D entities/marker/pattern-liberty bridge_.patt"
+        raycaster="objects: .clickable"
+        emitevents="true"
+        cursor="fuse: false; rayOrigin: mouse;"
+        id="markerA"
+      >
+        <a-entity
+          position="0 0 0"
+          scale="0.000005 0.000005 0.000005"
+          obj-model="obj: url(https://venice-and-death.github.io/objectmodels/fraud-illusionatthegate/fraud illusions at the gate.obj); 
+            mtl: url(https://venice-and-death.github.io/objectmodels/fraud-illusionatthegate/fraud illusions at the gate.mtl)"
+          class="clickable"
+          gesture-handler
+        >
+        </a-entity>
+      </a-marker>
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
 </html>
