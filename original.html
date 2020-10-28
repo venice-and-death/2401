@@ -18,7 +18,7 @@ AFRAME.registerComponent('vidhandler', {
     this.vid.pause();
   },
   tick:function(){
-    
+
 if(this.el.object3D.visible == true){
   if(!this.toggle){
      this.toggle = true;
@@ -43,11 +43,8 @@ if(this.el.object3D.visible == true){
     <a-assets>
       <video id="vid" src="https://venice-and-death.github.io/section videos/Video7.mp4" loop="true" crossorigin>
     </a-assets>
-   
-    <a-marker id="memarker" 
-              type="pattern" url="https://venice-and-death.github.io/imagemarkers/3D entities/marker/pattern-lust_.patt 
-              vidhandler
-     >
+
+    <a-marker id="memarker" preset="hiro" vidhandler>
       <a-plane position='2 2 -2' scale="2 2 2" width="2" rotation="0 0 0" material='transparent:true;opacity: 0.7;src:#vid'></a-plane>
     </a-marker>
 
