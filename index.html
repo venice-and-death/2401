@@ -11,7 +11,29 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <script src="gesture-detector.js"></script>
     <script src="gesture-handler.js"></script>
-
+    <script>
+AFRAME.registerComponent('vidhandler', {
+  // ...
+  init: function () {
+    // Set up initial state and variables.
+    this.toggle = false;
+    this.vid = document.querySelector("#vid")
+    this.vid.pause();
+  },
+  tick:function(){
+    
+if(this.el.object3D.visible == true){
+  if(!this.toggle){
+     this.toggle = true;
+     this.vid.play();
+    }
+  }else{
+  this.toggle = false;
+    this.vid.pause();
+    }
+  }
+});
+  </script>
     
   </head>
   <div style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
@@ -30,21 +52,22 @@
       gesture-detector
       id="scene"
     >
-      <a-marker type="pattern" url="https://venice-and-death.github.io/imagemarkers/3D entities/marker/pattern-liberty bridge_.patt"
+      <a-marker type="pattern" url="https://venice-and-death.github.io/imagemarkers/3D entities/marker/pattern-lust_.patt"
         raycaster="objects: .clickable"
         emitevents="true"
         cursor="fuse: false; rayOrigin: mouse;"
         id="markerA"
       >
-        <a-entity
-          position="0 0 0"
-          scale="0.000005 0.000005 0.000005"
-          obj-model="obj: url(https://venice-and-death.github.io/objectmodels/fraud-illusionatthegate/fraud illusions at the gate.obj); 
-            mtl: url(https://venice-and-death.github.io/objectmodels/fraud-illusionatthegate/fraud illusions at the gate.mtl)"
+        <a-plane 
+          position='2 2 -2' 
+          scale="2 2 2" width="2" 
+          rotation="0 0 0" 
+          material='transparent:true;opacity: 0.7;src:#vid'
           class="clickable"
           gesture-handler
-        >
-        </a-entity>
+          >
+        </a-plane>
+      
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
