@@ -2,23 +2,41 @@
 <html>
 <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
 <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.7.7/aframe/build/aframe-ar.js"></script>
+<script>
+AFRAME.registerComponent('vidhandler', {
+  // ...
+  init: function () {
+    // Set up initial state and variables.
+    this.toggle = false;
+    this.vid = document.querySelector("#vid")
+    this.vid.pause();
+  },
+  tick:function(){
+
+if(this.el.object3D.visible == true){
+  if(!this.toggle){
+     this.toggle = true;
+     this.vid.play();
+    }
+  }else{
+  this.toggle = false;
+    this.vid.pause();
+    }
+  }
+});
+  </script>
   <body style='margin : 0px; overflow: hidden;'>
     <a-assets>
 	    <video id="penguin-sledding" autoplay loop="true" muted="true" src="https://venice-and-death.github.io/section videos/Video7.mp4"></video>
 	  </a-assets>
     <a-scene embedded arjs>
-      <a-marker preset="hiro">
+      <a-marker preset="hiro" vidhandler>
          <!-- <a-box position='0 0.5 0' material='color: yellow; opacity: 0.5;'></a-box> -->
 	  <a-video src="#penguin-sledding" position="0 0.5 0" rotation="270 0 0" play="true"></a-video>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
     
-    <script>
-      window.addEventListener('click', function () {
-      var v = document.querySelector('#penguin-sledding');
-      v.play();
-      });
-    </script>
+    
   </body>
 </html>
